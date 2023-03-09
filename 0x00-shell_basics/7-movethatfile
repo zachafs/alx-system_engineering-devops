@@ -1,0 +1,3 @@
+mv /tmp/betty /tmp/my_first_directory/
+or
+cp /tmp/betty /tmp/my_first_directory
