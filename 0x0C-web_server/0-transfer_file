@@ -1,50 +1,26 @@
 #!/usr/bin/env bash
-<<<<<<< HEAD
-=======
 # Transfers a file from our client to a server and check it :
->>>>>>> 33a11a87e6a6c9aae842db2b04e504cd3417f7c8
-
-# Check if the number of parameters is less than 4
-if [ $# -lt 4 ]
+if [ $# -lt 3 ]
 then
-    echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
-    exit 1
+        echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+        exit 1
 fi
 
-# Assign variables
+# assignements Variable:
+
 path_to_file="$1"
 ip="$2"
 username="$3"
 path_to_ssh_key="$4"
-
-<<<<<<< HEAD
-# Disable strict host key checking
-scp -o StrictHostKeyChecking=no -i "$path_to_ssh_key" "$path_to_file" "$username@$ip:~/"
-=======
-path_to_file=$1
-ip=$2
-username=$3
-path_to_ssh_key=$4
 
 #diasble strick host
 
 scp -o "StrictHostKeyCheking=no" -i "$path_to_file" "$username@ip" "$path_to_ssh_key:~/"
 
 #checking if the transfer is made successfully
->>>>>>> 33a11a87e6a6c9aae842db2b04e504cd3417f7c8
 
-# Check if the transfer was successful
 if [ $? -eq 0 ]
 then
-<<<<<<< HEAD
-    echo "File was transferred successfully."
-else
-    echo "File transfer failed."
-    exit 1  # Exit with an error code
-fi
-
-=======
 	echo "successfully transferred"
 else
 	echo "FIle was not transferred, transaction denied"
->>>>>>> 33a11a87e6a6c9aae842db2b04e504cd3417f7c8
