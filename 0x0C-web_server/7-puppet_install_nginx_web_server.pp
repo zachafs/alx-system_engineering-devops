@@ -1,5 +1,3 @@
-# puppet
-
 package { 'nginx':
  ensure => installed,
 }
