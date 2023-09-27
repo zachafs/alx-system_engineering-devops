@@ -6,8 +6,8 @@ package { 'nginx':
 
 file_line { 'install':
  ensure => 'present',
- path	=> 'etc/nginx/sites-enabled/default',
- after	=> 'lesten 80 default_server;',
+ path	=> '/etc/nginx/sites-enabled/default',
+ after	=> 'listen 80 default_server;',
  line	=>'rewrite ^/redirect-me https://www.github.com/zachafs permanent;',
 }
 
