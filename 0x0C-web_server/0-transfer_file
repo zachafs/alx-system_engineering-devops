@@ -1,21 +1,20 @@
- #!/usr/bin/env bash
- # Transfers a file from our client to a server and tchec it :
-if [ $# -lt 3 ]; then
-    echo "Usage: ${0#./} PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
-    exit 1
+#!/usr/bin/env bash
+# Transfers a file from our client to a server and tchec it :
+
+if [ $# -lt 4 ]
+then
+        echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+        exit 1
 fi
 
- # assignements Variable:
+# assignements Variable:
 
-LOCAL_FILE=$1
-IP=$2
-USERNAME=$3
-PRIVATE_KEY=$4
+path_to_file=$1
+ip=$2
+username=$3
+path_to_ssh_key=$4
 
- #strict host
+#diasble strick host
 
-if [ $# -eq 3 ]; then
-    scp -o StrictHostKeyChecking=no "$LOCAL_FILE" "$USERNAME@$IP":~/
-else
-    scp -o StrictHostKeyChecking=no -i "$PRIVATE_KEY" "$LOCAL_FILE" "$USERNAME@$IP":~/
-fi
+scp -o "StrictHostKeyCheking=no" -i "$path_to_ssh_key" "$path_to_file" "$username@ip:~/"
+
