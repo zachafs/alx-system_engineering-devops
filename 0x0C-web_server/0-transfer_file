@@ -1,27 +1,27 @@
 #!/usr/bin/env bash
-# Transfers a file from our client to a server and tchec it :
 
+# Check if the number of parameters is less than 4
 if [ $# -lt 4 ]
 then
-        echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
-        exit 1
+    echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+    exit 1
 fi
 
-# assignements Variable:
+# Assign variables
+path_to_file="$1"
+ip="$2"
+username="$3"
+path_to_ssh_key="$4"
 
-path_to_file=$1
-ip=$2
-username=$3
-path_to_ssh_key=$4
+# Disable strict host key checking
+scp -o StrictHostKeyChecking=no -i "$path_to_ssh_key" "$path_to_file" "$username@$ip:~/"
 
-#diasble strick host
-
-scp -o "StrictHostKeyCheking=no" -i "$path_to_file" "$username@ip" "$path_to_ssh_key:~/"
-
-#checking if the transfeer s made successfuly
-
+# Check if the transfer was successful
 if [ $? -eq 0 ]
 then
-	echo "FILE was TRAnsfered Successfuly"
+    echo "File was transferred successfully."
 else
-	echo "FIle was not transfereed, transaction deniad"
+    echo "File transfer failed."
+    exit 1  # Exit with an error code
+fi
+
