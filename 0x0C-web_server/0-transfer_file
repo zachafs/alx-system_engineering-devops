@@ -16,5 +16,12 @@ path_to_ssh_key=$4
 
 #diasble strick host
 
-scp -o "StrictHostKeyCheking=no" -i "$path_to_file" "$username@ip:~/" "$path_to_ssh_key"
+scp -o "StrictHostKeyCheking=no" -i "$path_to_file" "$username@ip" "$path_to_ssh_key:~/"
 
+#checking if the transfeer s made successfuly
+
+if [ $? -eq 0 ]
+then
+	echo "FILE was TRAnsfered Successfuly"
+else
+	echo "FIle was not transfereed, transaction deniad"
