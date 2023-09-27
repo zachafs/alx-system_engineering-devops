@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Transfers a file from our client to a server and tchec it :
+# Transfers a file from our client to a server and check it :
 
 if [ $# -lt 4 ]
 then
@@ -18,10 +18,10 @@ path_to_ssh_key=$4
 
 scp -o "StrictHostKeyCheking=no" -i "$path_to_file" "$username@ip" "$path_to_ssh_key:~/"
 
-#checking if the transfeer s made successfuly
+#checking if the transfer is made successfully
 
 if [ $? -eq 0 ]
 then
-	echo "FILE was TRAnsfered Successfuly"
+	echo "successfully transferred"
 else
-	echo "FIle was not transfereed, transaction deniad"
+	echo "FIle was not transferred, transaction denied"
