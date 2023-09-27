@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# move permanently to 301
+
+sudo apt-get update
+sudo apt-get install- y nginx
+
+echo "Hello world!" | sudo tee /var/www/html/index.html
+
+string_for_replacement="server_name _;\n\trewrite ^\/redirect_me hhtps;\/\/github.com\/zachafs permanent;"
+sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/site-enabled/default
+
+sudo service nginx restart
