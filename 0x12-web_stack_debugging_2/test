@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-se -i 's/user www-data/user nginx' /etc/nginix/nginx.conf
+# apache2
+sed -i 's/user www-data/user nginx/' /etc/nginix/nginx.conf
 sed -i 's/80/8008/g' /etc/nginx/site-available/default
 pkill apache2
 sudo -u nginx service nginx start
