@@ -1,0 +1,19 @@
+#
+# MySQL configuration file.
+#
+
+[mysqld]
+pid-file        = /var/run/mysqld/mysqld.pid
+socket          = /var/run/mysqld/mysqld.sock
+datadir         = /var/lib/mysql
+log-error       = /var/log/mysql/error.log
+# By default we only accept connections from localhost
+bind-address    = 0.0.0.0
+# Disabling symbolic-links 
+symbolic-links=0
+# Distinguish servers 
+server-id       = 1
+# MySQL log_bin
+log_bin         = /var/log/mysql/mysql-bin.log
+# Database we want to replicate
+binlog_do_db    = tyrell_corp
