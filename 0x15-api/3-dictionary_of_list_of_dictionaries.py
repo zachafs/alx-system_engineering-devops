@@ -1,39 +1,47 @@
 #!/usr/bin/python3
-""" module doc """
-import json
-import requests
+"""
+This script exports user-specific task data to JSON format.
+Usage: ./script.py <user_id>
+"""
 
+import requests
+import sys
+import json
 
 def main():
-    id = 1
-    data_dict = {}
+    """
+    The main function for retrieving user-specific data and exporting it to a JSON file.
+    """
+    id = sys.argv[1]  # Get the user ID from the command-line argument
+    base_url = 'https://jsonplaceholder.typicode.com'
+    user_endpoint = f'/users?id={id}'
+    todos_endpoint = f'/todos?userId={id}'
 
-    while True:
-        url = "https://jsonplaceholder.typicode.com/"
-        users = f"users?id={id}"
-        todos = f"todos?userId={id}"
-        userData = requests.get(f"{url}{users}").json()
+    # Retrieve user information
+    user_data = requests.get(f'{base_url}{user_endpoint}').json()
+    username = user_data[0].get("username")
 
-        if not userData:
-            break
+    # Retrieve user's task data
+    todos_data = requests.get(f'{base_url}{todos_endpoint}').json()
 
-        userName = userData[0].get("username")
-        todosData = requests.get(f"{url}{todos}").json()
-
-        data_dict[id] = [
+    # Organize data into a dictionary
+    user_tasks = {
+        "username": username,
+        "tasks": [
             {
-                "username": userName,
-                "task": task.get("title"),
-                "completed": task.get("completed")
+                "task": todo.get("title"),
+                "completed": todo.get("completed")
             }
-            for task in todosData
+            for todo in todos_data
         ]
+    }
 
-        id += 1
-
-    with open("todo_all_employees.json", "w") as f:
-        json.dump(data_dict, f)
-
+    # Create a JSON file and write the data to it
+    all_employees_data = {}
+    all_employees_data[id] = user_tasks
+    with open('todo_all_employees.json', 'a') as json_file:
+        json.dump(all_employees_data, json_file)
 
 if __name__ == "__main__":
     main()
+
