@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#better way
+#better way to export file :
 
 import re
 import requests
@@ -23,7 +23,7 @@ if __name__ == '__main__':
 
             with open(csv_file_name, mode='w', newline='') as csv_file:
                 csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                
+
                 # Write the CSV header
                 csv_writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
 
